@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "PanKeeper",
+  "description": "Keep the resource you have accessed ever accessible",
+  "version": "0.1",
+
+
+  "permissions": [
+    "webRequest", "webRequestBlocking","https://pan.baidu.com/"
+  ],
+  "background": {
+    "scripts": [
+      "js/pouchdb.min.js",
+      "js/db.js",
+      "js/background.js"
+    ]
+  }
+}
