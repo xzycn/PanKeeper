@@ -4,22 +4,30 @@ let addPan = async (pan) => {
     try {
         pan['_id'] = pan['surl']
         console.log(pan['_id'])
-        let doc = await db.get(pan['_id']);
-        pan['_rev']=doc._rev;
+        let doc = await getPanCode(pan['_id']);
+        if(doc){
+            pan['_rev']=doc._rev;
+        }
         result = await db.put(pan);
+        result = result.ok
     } catch (e) {
-        console.log('add pan error: ',err);
+        console.log('add pan error: ',e);
     }
     return result;
 }
 
-
 let getPanCode = async (surl) => {
     let result = false
     try {
-        result = await db.get(surl)['code']
+        result = await db.get(surl)
+        result = result.code
+        console.log("get a pan-code: ", result)
     } catch (e) {
-        console.log('get pancode error: ', e)
+        if(e.status == 404){
+            console.log(`the pan-code of '${surl}' is not found`)
+        }else{
+            console.log('get pan-code error: ', e)
+        }
     }
 
     return result
@@ -39,5 +47,4 @@ let getPans = async (limit = 5) => {
 
 let getAllPansCount = async () => {
     return (await db.allDocs()).total_rows
-
 }
