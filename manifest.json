@@ -1,24 +1,25 @@
 {
-  "manifest_version": 2,
-  "name": "PanKeeper",
-  "description": "Keep the resource you have accessed ever accessible",
-  "version": "1.0.0",
-
-
-  "permissions": [
-    "webRequest", "webRequestBlocking","https://pan.baidu.com/","tabs"
-  ],
-  "background": {
-    "scripts": [
-      "js/pouchdb.min.js",
-      "js/db.js",
-      "js/background.js"
+    "manifest_version": 2,
+    "name": "PanKeeper",
+    "description": "Keep the resource you have accessed ever accessible",
+    "version": "1.0.0",
+    "icons": {"64": "resources/logo.png"},
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "https://pan.baidu.com/",
+        "tabs"
+    ],
+    "background": {
+        "scripts": [
+            "js/pouchdb.min.js",
+            "js/octokit-rest.min.js",
+            "js/api.js",
+            "js/db.js",
+            "js/background.js"
+        ]
+    },
+    "content_scripts": [
+        {"matches": ["https://pan.baidu.com/*"], "js": ["js/content.js"]}
     ]
-  },
-  "content_scripts":[
-     {
-      "matches": ["https://pan.baidu.com/*"],
-      "js": ["js/content.js"]
-    }
-  ]
 }
