@@ -13,8 +13,6 @@
     "background": {
         "scripts": [
             "js/pouchdb.min.js",
-            "js/octokit-rest.min.js",
-            "js/api.js",
             "js/db.js",
             "js/background.js"
         ]
